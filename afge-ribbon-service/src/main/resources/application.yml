@@ -1,0 +1,13 @@
+server:
+  port: 7080
+spring:
+  application:
+    name: afge-ribbon-service # 对应config-server获取的配置文件的{application}
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://10.0.0.32:8761/eureka/,http://10.0.0.33:8761/eureka/,http://10.0.0.34:8761/eureka/
+  instance:
+    prefer-ip-address: true #将IP注册到EurekaServer，默认false注册hostname

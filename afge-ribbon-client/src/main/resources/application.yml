@@ -1,0 +1,32 @@
+server:
+  port: 7090
+spring:
+  application:
+    name: afge-ribbon-client # 对应config-server获取的配置文件的{application}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://10.0.0.32:8761/eureka/,http://10.0.0.33:8761/eureka/,http://10.0.0.34:8761/eureka/
+  instance:
+    prefer-ip-address: true #将IP注册到EurekaServer，默认false注册hostname
+
+feign:
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+
+afge-ribbon-service:
+  ribbon:
+    #配置首台服务器重试次数
+    MaxAutoRetries: 0
+    #配置其他服务器重试次数
+    MaxAutoRetriesNextServer: 1
+    #链接超时时间
+    ConnectTimeout: 500
+    #请求处理时间
+    ReadTimeout: 2000
+    #每个操作都开启重试机制
+    OkToRetryOnAllOperations: false
